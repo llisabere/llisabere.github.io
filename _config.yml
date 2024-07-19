@@ -3,3 +3,4 @@ plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 
 title: Hello Hello
+description: Someday there will be something useful here... or not.
