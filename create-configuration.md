@@ -3,7 +3,7 @@ layout: default
 title: All-atom initial configurations
 ---
 
-Go [back](./) .
+Go [back](./).
 
 Here is an example on how to create slab starting configurations with the use of ```gmx insert-molecules``` command.
 
