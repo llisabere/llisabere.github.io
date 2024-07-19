@@ -102,11 +102,11 @@ Finally, run ```merge_pdbs.sh``` [here](./merge_pdbs.md) to pack peptides into a
 The script first packs as much peptides as it can into a Lz-10 nm box, then into Lz-5 nm box and finaly does two tries to pack into Lz box. This allows for the most packed region to be the central of the final box. Lx and Ly are fixed at 6 nm. In the end you will get ```init.Npep.gro``` configuration.
 
 #### 4. Solvate, add ions and run energy minimization and equilibration
-Proceed to do the same procedure as is described in step 1, changing the box dimenstion to 6 6 Lz from the previous step and ion concentration to 0.01 to only add ions enough to neutralize the peptides.
+Proceed to do the same procedure as is described in step 1, changing the box dimenstion to 6 6 Lz from the previous step and ion concentration to 0.01 to only add ions enough to neutralize the peptides. NPT equilibration is done using semiisotropic barostat with xy compressibility set to 0.
 
 Check potential energy and force convergence from min.log. Check pressure from nvt.edr. Check system size from npt.edr.
 
 #### 5. Elongate the box into the slab-like gometry, repeat step 4 and run md
-Create a deirectory slab. Proceed to do the same procedure as is described in step 4, changing the box dimension to Lx Ly Lz+dz from ../npt.gro of previous step where dz stands for the diluted phase size of youre system. Change ion concentration for your desired value. After all the equilibration is done, proceed with normal md procedure. 
+Create a deirectory slab. Proceed to do the same procedure as is described in step 4, changing the box dimension to Lx Ly Lz+dz from ../npt.gro of previous step where dz stands for the diluted phase size of youre system. Change ion concentration for your desired value. Here we use isotropic barostat. After all the equilibration is done, proceed with normal md procedure. 
 
-Hopefully, sysmter does not explode :)
+Hopefully, system does not explode :)
