@@ -1,3 +1,5 @@
+```bash
+### Can be done much more smartly but I am lazy
 nmols=$1
 firstgro=$2
 itrial=1
@@ -164,4 +166,4 @@ echo Final density $rhofin
 rm -f out.log
 rm -f success.log
 echo "Done creating $outfile"
-
+```
