@@ -98,7 +98,7 @@ do
 	echo Protein Protein | gmx trjconv -f ../pbc.xtc -s ../md.tpr -center -o initial${frame}.gro -dump $frame -pbc mol
 done
 ```
-Finally, run ```merge_pdbs.sh``` **add script** to pack peptides into a box. 
+Finally, run ```merge_pdbs.sh``` [here](./merge_pdbs.md) to pack peptides into a box. 
 ``` usage: merge_pdbs.sh Npep initial1111.gro Lz```
 
 The script first packs as much peptides as it can into a Lz-10 nm box, then into Lz-5 nm box and finaly does two tries to pack into Lz box. This allows for the most packed region to be the central of the final box. Lx and Ly are fixed at 6 nm. In the end you will get ```init.Npep.gro``` configuration.
