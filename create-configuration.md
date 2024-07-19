@@ -9,22 +9,15 @@ Here is an example on how to create slab starting configurations with the use of
 
 ## General recepy for creating slab all-atom initial configurations 
 
-This tutorial is done using short peptide of 10 amino acids: WGRGRGRGWY. The main idea is to pack 100 peptides into a box with a density ~400 g/l and create a slab-like topology for gromacs for it. The initial density is found to be the highest gromacs accepts, adjust as needed.
+This tutorial is done using short sample peptide: wgr4. The main idea is to pack 100 peptides into a box with a density ~400 g/l and create a slab-like topology for gromacs for it. The initial density is found to be the highest gromacs accepts, adjust as needed.
 
 ### Outlook of the process:
 
-1. Create an initial topology for 1 peptide (here we use tleap from ambertools);
-2. Run 500 ns gromacs simulation;
-3. Extract 2000 configurations grom the 1 peptide run;
-4. Randomly pack 100 configurations into a box of given size;
-5. Solvate the system;
-6. Add ions to neutralize the peptides;
-7. Run energy minimization;
-8. Run nvt equilibration;
-9. Run npt equilibration;
-10. Elongate the box into the slab-like gometry;
-11. Repeat steps 5-9;
-12. Run md production run.
+1. Create an initial topology for 1 peptide (here we use tleap from amber tools) and run 500 ns md;
+2. Extract 2000 configurations grom the 1 peptide run;
+3. Randomly pack 100 configurations into a box of given size;
+4. Solvate, add ions and run energy minimization and equilibration;
+5. Elongate the box into the slab-like gometry, repeat step 4 and run md.
     
 ### Step by step procedure
 
@@ -84,6 +77,7 @@ gmx grompp -f md.mdp -c npt.gro -p topol.top -o md.tpr
 gmx convert-tpr -s md.tpr -o md.tpr -until 500e3 # 500 ns
 gmx mdrun -v -deffnm md -s md.tpr 
 ```
+#### 2. Extract 2000 configurations grom the 1 peptide run
 
 After the run is complete (luckily, this should not take a lot of time!) apply periodic boundary conditions to the final md.xtc:
 
@@ -98,9 +92,21 @@ do
 	echo Protein Protein | gmx trjconv -f ../pbc.xtc -s ../md.tpr -center -o initial${frame}.gro -dump $frame -pbc mol
 done
 ```
+
+#### 3. Randomly pack 100 configurations into a box of given size
+
 Finally, run ```merge_pdbs.sh``` [here](./merge_pdbs.md) to pack peptides into a box. 
 
 ``` usage: merge_pdbs.sh Npep initial1111.gro Lz```
 
 The script first packs as much peptides as it can into a Lz-10 nm box, then into Lz-5 nm box and finaly does two tries to pack into Lz box. This allows for the most packed region to be the central of the final box. Lx and Ly are fixed at 6 nm. In the end you will get ```init.Npep.gro``` configuration.
 
+#### 4. Solvate, add ions and run energy minimization and equilibration
+Proceed to do the same procedure as is described in step 1, changing the box dimenstion to 6 6 Lz from the previous step and ion concentration to 0.01 to only add ions enough to neutralize the peptides.
+
+Check potential energy and force convergence from min.log. Check pressure from nvt.edr. Check system size from npt.edr.
+
+#### 5. Elongate the box into the slab-like gometry, repeat step 4 and run md
+Create a deirectory slab. Proceed to do the same procedure as is described in step 4, changing the box dimension to Lx Ly Lz+dz from ../npt.gro of previous step where dz stands for the diluted phase size of youre system. Change ion concentration for your desired value. After all the equilibration is done, proceed with normal md procedure. 
+
+Hopefully, sysmter does not explode :)
