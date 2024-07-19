@@ -8,4 +8,4 @@ Go to some [all-atom initial configuration (slab)](./create-configuration.html)
 
 Go to some [backmapping fails](./backmapping-cg.html)
 
-Go to some [all-atom initial configuration (long molecule)(./create-initconf-protein.html)
+Go to some [all-atom initial configuration (long molecule)](./create-initconf-protein.html)
