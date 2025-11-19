@@ -12,7 +12,7 @@ Data Science:
 
 Research:
 
-[English](./CV_Lisa_BEREZOVSKA_MdBio.pdf) 1 Page
+[English](./CV_Lisa_BEREZOVSKA-MdBio.pdf) 1 Page
 
 [English](./CV_Lisa_BEREZOVSKA_research.pdf) Full
 
