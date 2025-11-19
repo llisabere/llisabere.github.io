@@ -4,6 +4,11 @@ layout: default
 
 Hello, **world**! This is my test page to showcase all the failed attempts at science of my postdoc.
 
+Check out my CV:
+
+[French](./CV_Lisa_BEREZOVSKA_DataSc_FR.pdf)
+
+English (to be added)
 
 Create an initial configuration for slab simulations using only gromacs [here](./create-configuration.html)
 
