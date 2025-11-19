@@ -2,6 +2,10 @@
 layout: default 
 ---
 
+Hi there.
+
+My name is Lisa and I am passinate about science, data and life exploration. Join me and check out some of my projects.
+
 ### CV:
 
 Data Science:
