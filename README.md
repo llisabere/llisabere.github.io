@@ -1,7 +1,7 @@
 # CV 
 
 English 
-French
+[French](./CV_Lisa_BEREZOVSKA_DataSc_FR.pdf)
 
 # Mini tutorials on Gromacs
 
